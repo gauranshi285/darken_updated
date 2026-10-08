@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Members List</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
+  <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/dist/css/adminlte.min.css" />
+  <link rel="stylesheet" href="/css/admin.css" />
+  <style>
+    .block-click {
+      pointer-events: none;
+    }
+
+    .games-master-control {
+      align-items: center;
+      background: #ffffff;
+      border: 1px solid #d7e3ef;
+      border-radius: 10px;
+      box-shadow: 0 4px 14px rgba(31, 45, 61, 0.08);
+      display: inline-flex;
+      gap: 14px;
+      justify-content: flex-end;
+      padding: 9px 14px;
+    }
+
+    .games-master-control__copy {
+      line-height: 1.15;
+      text-align: right;
+    }
+
+    .games-master-control__copy strong,
+    .games-master-control__copy small {
+      display: block;
+    }
+
+    .games-master-control__copy small {
+      color: #dc3545;
+      font-weight: 700;
+      margin-top: 3px;
+    }
+
+    .games-master-control.is-live .games-master-control__copy small {
+      color: #198754;
+    }
+
+    .games-toggle {
+      display: inline-block;
+      height: 30px;
+      margin: 0;
+      position: relative;
+      width: 58px;
+    }
+
+    .games-toggle input {
+      height: 0;
+      opacity: 0;
+      width: 0;
+    }
+
+    .games-toggle__slider {
+      background: #dc3545;
+      border-radius: 999px;
+      bottom: 0;
+      cursor: pointer;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transition: 0.2s ease;
+    }
+
+    .games-toggle__slider::before {
+      background: #ffffff;
+      border-radius: 50%;
+      bottom: 4px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+      content: "";
+      height: 22px;
+      left: 4px;
+      position: absolute;
+      transition: 0.2s ease;
+      width: 22px;
+    }
+
+    .games-toggle input:checked + .games-toggle__slider {
+      background: #28a745;
+    }
+
+    .games-toggle input:checked + .games-toggle__slider::before {
+      transform: translateX(28px);
+    }
+
+    .games-toggle input:focus-visible + .games-toggle__slider {
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.28);
+    }
+
+    .games-toggle input:disabled + .games-toggle__slider {
+      cursor: wait;
+      opacity: 0.6;
+    }
+
+    @media (max-width: 575.98px) {
+      .games-control-column {
+        margin-top: 12px;
+        text-align: left !important;
+      }
+
+      .games-master-control {
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      .games-master-control__copy {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+
+<body class="hold-transition sidebar-mini">
+  <div class="wrapper">
+    <%- include('nav') %>
+      <div class="content-wrapper">
+        <section class="content-header">
+          <div class="container-fluid">
+            <div class="row mb-2">
+              <div class="col-sm-6">
+                <h1>Members list</h1>
+              </div>
+              <div class="col-sm-6 text-right games-control-column">
+                <div class="games-master-control" id="gamesMasterControl">
+                  <span class="games-master-control__copy">
+                    <strong>All Games</strong>
+                    <small id="gamesStatusText">Checking status...</small>
+                  </span>
+                  <label class="games-toggle" title="Play or pause Wingo, 5D and K3">
+                    <input type="checkbox" id="gamesStatusToggle" aria-label="Play or pause all games" disabled />
+                    <span class="games-toggle__slider"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.container-fluid -->
+        </section>
+
+        <div class="form-group" style="text-align: center">
+          <input type="text" id="search" placeholder="Enter the member you are looking for" />
+        </div>
+
+        <!-- Main content -->
+        <section class="content">
+          <!-- Default box -->
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title" id="membersListTitle" style="cursor: pointer;">Members list</h3>
+              <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body p-0" style="overflow-y: hidden">
+              <table class="table table-striped projects" id="table1">
+                <thead>
+                  <tr>
+                    <th class="text-center">UID</th>
+                    <th class="text-center">Account</th>
+                    <th class="text-center">Amount</th>
+                    <th class="text-center">Code</th>
+                    <th class="text-center">Referral</th>
+                    <th class="text-center">Direct</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-center">Email</th>
+                    <th class="text-center">Password</th>
+                    <th class="text-center">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- #region -->
+                </tbody>
+              </table>
+            </div>
+            <nav aria-label="Page navigation example" style="margin-top: 20px; display: flex; justify-content: center">
+              <ul class="pagination table1">
+                <li class="page-item previous" id="previous">
+                  <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <div id="numbers" style="display: flex">
+                  <li class="page-item">
+                    <a class="page-link active text-white" id="text-page"></a>
+                  </li>
+                </div>
+                <li class="page-item next" id="next">
+                  <a class="page-link" href="#">Next</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </section>
+      </div>
+  </div>
+  <script src="/plugins/jquery/jquery.min.js"></script>
+  <script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/dist/js/adminlte.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+  <script src="/js/admin/admin.js"></script>
+  <script>
+    const gamesMasterControl = document.getElementById('gamesMasterControl');
+    const gamesStatusText = document.getElementById('gamesStatusText');
+    const gamesStatusToggle = document.getElementById('gamesStatusToggle');
+
+    const renderGamesStatus = (enabled) => {
+      gamesStatusToggle.checked = enabled;
+      gamesStatusText.textContent = enabled ? 'Live - users can play' : 'Paused - users cannot play';
+      gamesMasterControl.classList.toggle('is-live', enabled);
+    };
+
+    const loadGamesStatus = async () => {
+      gamesStatusToggle.disabled = true;
+      try {
+        const response = await fetch('/api/webapi/games/status', {
+          cache: 'no-store',
+          headers: { Accept: 'application/json' },
+        });
+        const result = await response.json();
+        if (!response.ok || result.status !== true) throw new Error(result.message || 'Unable to read game status.');
+        renderGamesStatus(result.enabled === true);
+        gamesStatusToggle.disabled = false;
+      } catch (error) {
+        renderGamesStatus(false);
+        gamesStatusText.textContent = 'Status unavailable';
+        console.error(error);
+      }
+    };
+
+    gamesStatusToggle.addEventListener('change', async () => {
+      const requestedState = gamesStatusToggle.checked;
+      gamesStatusToggle.disabled = true;
+      gamesStatusText.textContent = requestedState ? 'Starting games...' : 'Pausing games...';
+
+      try {
+        const response = await fetch('/api/webapi/admin/games/status', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ enabled: requestedState }),
+        });
+        const result = await response.json();
+        if (!response.ok || result.status !== true) throw new Error(result.message || 'Unable to update game status.');
+
+        renderGamesStatus(result.enabled === true);
+        await Swal.fire({
+          icon: 'success',
+          title: result.enabled ? 'Games are live' : 'Games are paused',
+          text: result.message,
+          timer: 1500,
+          showConfirmButton: false,
+        });
+      } catch (error) {
+        renderGamesStatus(!requestedState);
+        await Swal.fire({
+          icon: 'error',
+          title: 'Update failed',
+          text: error.message || 'Unable to update game status.',
+        });
+      } finally {
+        gamesStatusToggle.disabled = false;
+      }
+    });
+
+    loadGamesStatus();
+  </script>
+  <script>
+    $("#search").on("keyup", function () {
+      var value = $(this).val().toLowerCase();
+      $("tbody tr").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+      });
+    });
+  </script>
+  <script>
+    document.getElementById('membersListTitle').addEventListener('click', function () {
+
+      window.location.href = `/admin/manager/members`;
+    });
+
+    async function fetchReferredUsers(code) {
+      try {
+        const response = await fetch(`/api/referredUsers/${encodeURIComponent(code)}`);
+        if (response.ok) {
+          const data = await response.json();
+          RenderReferredUsers(data.users || []);
+        } else {
+          console.error('Error fetching referred users:', response.statusText);
+        }
+      } catch (error) {
+        console.error('Error fetching referred users:', error);
+      }
+    }
+
+    const escapeHtml = (value) => {
+      return String(value ?? '').replace(/[&<>"']/g, (char) => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;',
+      }[char]));
+    };
+
+    const moneyText = (value) => {
+      const amount = Number(value || 0);
+      return Number.isFinite(amount) ? amount.toFixed(2) : '0.00';
+    };
+
+    const renderMemberRows = (users, showDirectLink = true) => {
+      let html = '';
+      if (!Array.isArray(users) || users.length === 0) {
+        document.querySelector("tbody").innerHTML = `
+          <tr>
+            <td colspan="10" class="text-center py-4">No members found</td>
+          </tr>`;
+        return;
+      }
+
+      users.forEach((user) => {
+        const directCount = Number(user.direct_count ?? 0);
+        const referralPhone = user.referral_phone || user.referral || user.invite || '-';
+        const directCell = showDirectLink
+          ? `<b class="direct-count" data-code="${escapeHtml(user.code)}" style="cursor: pointer;">${directCount}</b>`
+          : `<b>${directCount}</b>`;
+
+        html += `
+      <tr class="text-center">
+        <td>${user.id_user}</td>
+        <td>
+          <b style="color: #2003db">${user.phone}</b>
+        </td>
+        <td>
+          <b>${moneyText(user.money)}</b>
+        </td>
+        <td>
+          <b>${escapeHtml(user.code)}</b>
+        </td>
+        <td>
+          <b style="color: #2003db">${escapeHtml(referralPhone)}</b>
+        </td>
+        <td>
+          ${directCell}
+        </td>
+        <td class="project-state">
+          ${(user.status == 1) ? '<span class="badge badge-success">Active</span>' : '<span class="badge badge-warning">Banned</span>'}
+        </td>
+        <td>
+          <b>${escapeHtml(user.email || '-')}</b>
+        </td>
+        <td>
+          <b style="color: #2003db">${user.plain_password}</b>
+        </td>
+        <td class="project-actions text-center" style="min-width: 100px">
+          <a class="btn btn-primary btn-sm confirm-btn" href="/admin/member/info/${user.phone}">
+            <i class="fas fa-folder"></i> Profile</a>
+          ${(user.status == 1) ? `<a class="btn btn-info btn-sm btn-danger" id="${user.id}" href="#">
+          <i class="fas fa-pencil-alt"></i> Lock Up
+          </a>` : ''}
+          ${(user.status == 2) ? `<a class="btn btn-info btn-sm btn-info1" id="${user.id}" href="#">
+            <i class="fas fa-pencil-alt"></i> Open
+          </a>` : ''}
+        </td>
+      </tr>`;
+      });
+      document.querySelector("tbody").innerHTML = html;
+
+      $('.direct-count').click(function () {
+        fetchReferredUsers($(this).data('code'));
+      });
+
+      $('.btn-danger').click(function (e) {
+        e.preventDefault();
+        let check = confirm("Are you sure you want to lock this account ?");
+        let id = $(this).attr('id');
+        if (check) {
+          $.ajax({
+            type: "POST",
+            url: "/api/webapi/admin/banned",
+            data: {
+              id: id,
+              type: 'close'
+            },
+            dataType: "json",
+            success: function (response) {
+              alert(response.message);
+              location.reload();
+            }
+          });
+        }
+      });
+
+      $('.btn-info1').click(function (e) {
+        e.preventDefault();
+        let check = confirm("Are you sure you want to unlock this account ?");
+        let id = $(this).attr('id');
+        if (check) {
+          $.ajax({
+            type: "POST",
+            url: "/api/webapi/admin/banned",
+            data: {
+              id: id,
+              type: 'open'
+            },
+            dataType: "json",
+            success: function (response) {
+              alert(response.message);
+              location.reload();
+            }
+          });
+        }
+      });
+
+    };
+
+    const RenderReferredUsers = (users) => renderMemberRows(users, false);
+    const Render = (datas) => renderMemberRows(datas, true);
+
+    let pageno = 0;
+    let limit = 30;
+    let page = 1;
+    $.ajax({
+      type: "POST",
+      url: "/api/webapi/admin/listMember",
+      data: {
+        typeid: "1",
+        pageno: pageno,
+        limit: limit,
+        language: "vi",
+      },
+      dataType: "json",
+      success: function (response) {
+        $('#text-page').text(page + ' / ' + response.page_total);
+        if (response.status === true) return Render(response.datas);
+      },
+    });
+
+    $('#search').keypress(function (event) {
+      var keycode = (event.keyCode ? event.keyCode : event.which);
+      var value = $('#search').val().trim();
+      if (keycode == '13') {
+        $.ajax({
+          type: "POST",
+          url: "/api/webapi/search",
+          data: {
+            phone: value,
+          },
+          dataType: "json",
+          success: function (response) {
+            if (response.status === true) return Render(response.datas);
+          }
+        });
+      }
+
+    });
+
+    $('#next').click(function (e) {
+      pageno += limit;
+      e.preventDefault();
+      $.ajax({
+        type: "POST",
+        url: "/api/webapi/admin/listMember",
+        data: {
+          typeid: "1",
+          pageno: pageno,
+          limit: limit,
+          language: "vi",
+        },
+        dataType: "json",
+        success: function (response) {
+          if (response.datas.length == 0) {
+            $('#next').addClass('block-click');
+            return pageno -= limit
+          };
+          $('#text-page').text(++page + ' / ' + response.page_total);
+          if (response.status === true) return Render(response.datas);
+        }
+      });
+    });
+
+    $('#previous').click(function (e) {
+      e.preventDefault();
+      $('#next').removeClass('block-click');
+      pageno -= limit;
+      if (pageno < 0) return pageno = 0;
+      $.ajax({
+        type: "POST",
+        url: "/api/webapi/admin/listMember",
+        data: {
+          typeid: "1",
+          pageno: pageno,
+          limit: limit,
+          language: "vi",
+        },
+        dataType: "json",
+        success: function (response) {
+          $('#text-page').text(--page + ' / ' + response.page_total);
+          if (response.status === true) return Render(response.datas);
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html translate="no" data-dpr="1" style="font-size: 48.16px;" style="min-height: 100vh;">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="noindex,nofollow">
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <title>Drakon</title>
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/all.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-thin.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-solid.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-regular.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.5.1/css/sharp-light.css">
+    <link rel="stylesheet" href="./index_files/index-96409872.css">
+    <link href="/css/member/main.css" rel="stylesheet" />
+    <link href="/css/member/chunk-1.css" rel="stylesheet" />
+    <link href="/css/member/chunk-2.css" rel="stylesheet" />
+    <link href="/css/member/chunk-3.css" rel="stylesheet" />
+    <link href="/css/member/chunk-4.css" rel="stylesheet" />
+    <link href="/css/member/chunk-5.css" rel="stylesheet" />
+    <link href="/css/member/chunk-6.css" rel="stylesheet" />
+    <link href="/css/member/chunk-7.css" rel="stylesheet" />
+    <link href="/css/drakon-page-refresh.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/images/drakon-mark.svg" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+    <style>
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            background-color: #090909;
+            padding: 0;
+            margin: 0;
+        }
+
+        .block-click {
+            pointer-events: none;
+        }
+
+        .totalSavings {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -webkit-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            align-items: center
+        }
+
+        .totalSavingsIMG {
+            width: 0.8rem
+        }
+
+        .profile-entry {
+            top: .28rem;
+            min-height: 2.45rem;
+            padding: .28rem .34rem;
+            border: .02667rem solid rgba(38, 143, 232, .35);
+            border-radius: .32rem;
+            background: rgba(255, 255, 255, .94);
+            box-shadow: 0 .12rem .36rem rgba(31, 91, 145, .18);
+            cursor: pointer;
+            transition: transform .15s ease, box-shadow .15s ease;
+        }
+
+        .profile-entry:active {
+            transform: scale(.985);
+            box-shadow: 0 .06rem .2rem rgba(31, 91, 145, .15);
+        }
+
+        .profile-entry:focus-visible {
+            outline: .05333rem solid #278fe8;
+            outline-offset: .05333rem;
+        }
+
+        .profile-entry .profile.profile-cta {
+            position: absolute !important;
+            top: .24rem;
+            right: .28rem !important;
+            display: flex;
+            align-items: center;
+            gap: .12rem;
+            min-width: 1.82rem;
+            padding: .16rem .2rem;
+            border-radius: 99rem;
+            color: #147dca;
+            background: #e7f4ff;
+            font-size: .29rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .profile-entry .profile.profile-cta i {
+            color: #147dca !important;
+        }
+
+        .profile-entry > .c-row:first-child {
+            width: 100%;
+            min-width: 0;
+        }
+
+        .profile-entry .infoName {
+            min-width: 0;
+        }
+
+        .profile-entry .infoName .number {
+            height: auto !important;
+            line-height: 1.35 !important;
+            white-space: nowrap;
+        }
+
+        .mian .menu-box .info {
+            height: 4.95rem !important;
+            padding-left: .4rem !important;
+            padding-right: .4rem !important;
+        }
+
+        .mian .menu-box .total-box {
+            margin: -1.18rem .4rem .4rem !important;
+        }
+    </style>
+</head>
+
+<body class="account-refresh">
+    <svg class="account-icon-sprite" aria-hidden="true">
+        <symbol id="account-icon-headset" viewBox="0 0 24 24">
+            <path d="M4 14v-2a8 8 0 0 1 16 0v2"></path>
+            <path d="M18 19c0 1.1-.9 2-2 2h-3"></path>
+            <rect x="3" y="13" width="4" height="7" rx="2"></rect>
+            <rect x="17" y="13" width="4" height="7" rx="2"></rect>
+        </symbol>
+        <symbol id="account-icon-chevron" viewBox="0 0 24 24">
+            <path d="m9 18 6-6-6-6"></path>
+        </symbol>
+        <symbol id="account-icon-users" viewBox="0 0 24 24">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+            <circle cx="9" cy="7" r="4"></circle>
+            <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </symbol>
+        <symbol id="account-icon-shield" viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path>
+            <path d="m9 12 2 2 4-4"></path>
+        </symbol>
+        <symbol id="account-icon-gift" viewBox="0 0 24 24">
+            <rect x="3" y="8" width="18" height="13" rx="2"></rect>
+            <path d="M12 8v13M3 12h18M7.5 8C5.5 8 5 6.8 5 5.8 5 4.8 5.8 4 6.8 4 9 4 12 8 12 8M16.5 8C18.5 8 19 6.8 19 5.8 19 4.8 18.2 4 17.2 4 15 4 12 8 12 8"></path>
+        </symbol>
+        <symbol id="account-icon-receipt" viewBox="0 0 24 24">
+            <path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3Z"></path>
+            <path d="M9 7h6M9 11h6M9 15h3"></path>
+        </symbol>
+        <symbol id="account-icon-whatsapp" viewBox="0 0 24 24">
+            <path d="M21 11.5a8.5 8.5 0 0 1-12.58 7.47L3 21l2.03-5.42A8.5 8.5 0 1 1 21 11.5Z"></path>
+            <path d="M8.4 8.2c.4 2.8 2.6 5 5.4 5.4l1.4-1.4c.3-.3.7-.4 1.1-.2l1.7.8"></path>
+        </symbol>
+        <symbol id="account-icon-eye" viewBox="0 0 24 24">
+            <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+        </symbol>
+        <symbol id="account-icon-logout" viewBox="0 0 24 24">
+            <path d="M10 17l5-5-5-5M15 12H3"></path>
+            <path d="M14 3h5a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-5"></path>
+        </symbol>
+    </svg>
+    <div id="app">
+        <div data-v-8cd483ca="" class="mian page">
+            <div data-v-106b99c8="" data-v-8cd483ca="" class="navbar">
+                <div data-v-106b99c8="" class="navbar-left" onclick="location.href='/home'">
+                    <div data-v-a9660e98="" data-v-106b99c8="" class="c-row c-row-middle-center">
+                        <i class="fa-duotone fa-house fa-fade fa-lg center"
+                            style="--fa-primary-color: #FFF; --fa-secondary-color: #FFF;"></i>
+                    </div>
+                </div>
+                <div data-v-106b99c8="" class="navbar-right" onclick="location.href='/keFuMenu'">
+                    <div data-v-8cd483ca="" data-v-106b99c8="" class="c-row">
+                        <svg class="account-top-icon support-headset" aria-hidden="true"><use href="#account-icon-headset"></use></svg>
+                    </div>
+                </div>
+            </div>
+            <div data-v-8cd483ca="" class="menu-box">
+                <div data-v-8cd483ca="" class="info p-t-30 p-l-30 p-b-30 p-r-20" style="padding-top: 0rem!important">
+                    <div data-v-8cd483ca="" class="c-row c-row-between c-row-middle state-box c-pr profile-entry"
+                        role="link" tabindex="0" aria-label="View profile"
+                        onclick="location.href='/myProfile'"
+                        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();location.href='/myProfile'}">
+                        <div data-v-8cd483ca="" class="c-row c-row-middle">
+                            <div data-v-8cd483ca="" class="user-img">
+                                <img data-v-8cd483ca="" src="/images/avatar.svg" class="img">
+                            </div>
+                            <div data-v-8cd483ca="" class="p-l-10 infoName">
+                                <div data-v-8cd483ca="" class="name mb3 c-row c-row-middle"> </div>
+                                <div data-v-8cd483ca="" class="id tag-read mb3" data-clipboard-text="42472"></div>
+                                <div data-v-8cd483ca="" class="number mb3"> </div>
+                                <div data-v-8cd483ca="" class="email mb3" style="display: none;"></div>
+                            </div>
+                        </div>
+                        <div data-v-8cd483ca="" class="profile profile-cta">
+                            <span>View Profile</span>
+                            <svg class="account-chevron" aria-hidden="true"><use href="#account-icon-chevron"></use></svg>
+                        </div>
+                    </div>
+                </div>
+                <div data-v-8cd483ca="" class="total-box">
+                    <div data-v-8cd483ca="" class="infoItem">
+                        <div data-v-8cd483ca="" class="c-row c-row-middle"
+                            style="border-bottom: 0.01333rem solid #292929">
+                            <div data-v-8cd483ca="" class="p-l-15">
+                                <div data-v-8cd483ca="" class="des u-m-b-15">Balance</div>
+                                <div data-v-8cd483ca="" class="c-row c-row-middle c-row-center p-t-5">
+                                    <div data-v-8cd483ca="" class="money">
+                                        <div data-v-8cd483ca="">
+                                            <span data-v-8cd483ca="" class="txt1" id="Balance"
+                                                style="display: inline; font-size: 22px">*****</span>
+                                            <span data-v-8cd483ca="" class="txt" id="balance_show"
+                                                style="display: none">₹
+                                                0.00</span>
+                                        </div>
+                                    </div>
+                                    <div data-v-8cd483ca="">
+                                        <img data-v-8cd483ca="" width="20px" height="20px" src="/images/king (1).png"
+                                            class="img m-l-10 reload_money">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="balance-visibility-toggle" aria-label="Show or hide balance"
+                                onclick="toggleBalanceVisibility()">
+                                <svg aria-hidden="true"><use href="#account-icon-eye"></use></svg>
+                            </button>
+                        </div>
+                        <div data-v-8cd483ca="" class="c-row c-row-between m-t-10 infoBtn">
+                            <div data-v-8cd483ca="" class="item c-row c-row-center" onclick="location.href='/wallet'">
+                                <div data-v-8cd483ca="" class="totalSavings">
+                                    <img data-v-d61ad6c9="" src="/images/walletIMG.png" class="totalSavingsIMG"><span
+                                        data-v-d61ad6c9="">Wallet</span>
+                                </div>
+                            </div>
+                            <div data-v-8cd483ca="" class="item c-row c-row-center"
+                                onclick="location.href='/wallet/recharge'">
+                                <div data-v-d61ad6c9="" class="totalSavings">
+                                    <img data-v-d61ad6c9="" src="/images/recharge.png" class="totalSavingsIMG"><span
+                                        data-v-d61ad6c9="">Deposit</span>
+                                </div>
+                            </div>
+                            <div data-v-8cd483ca="" class="item c-row c-row-center"
+                                onclick="location.href='/wallet/withdrawal'">
+                                <div data-v-d61ad6c9="" class="totalSavings">
+                                    <img data-v-d61ad6c9="" src="/images/withdraw.png" class="totalSavingsIMG"><span
+                                        data-v-d61ad6c9="">Withdraw</span>
+                                </div>
+                            </div>
+                            <div data-v-8cd483ca="" class="item c-row c-row-center"
+                                onclick="location.href='/promotion'">
+                                <div data-v-d61ad6c9="" class="totalSavings">
+                                    <img data-v-d61ad6c9="" src="/images/promoteIMG.png" class="totalSavingsIMG"><span
+                                        data-v-d61ad6c9="">Promotion</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-v-21f3500a="" data-v-8cd483ca="" class="list">
+                    <% if (level==2) { %>
+                                <div data-v-21f3500a="" class="item c-row c-row-between"
+                                    onclick="location.href='/manager/index'">
+                                    <div data-v-21f3500a="" class="c-row c-row-middle">
+                                        <span class="account-menu-icon"><svg aria-hidden="true"><use href="#account-icon-users"></use></svg></span>
+                                        <span data-v-21f3500a="" class="name">Collaborator Area</span>
+                                    </div>
+                                    <div data-v-21f3500a="" class="c-row c-row-middle">
+                                        <svg class="account-chevron" aria-hidden="true"><use href="#account-icon-chevron"></use></svg>
+                                    </div>
+                                </div>
+                                <% } %>
+                                    <div data-v-21f3500a="" class="item c-row c-row-between"
+                                        onclick="location.href='/mian/forgot'">
+                                        <div data-v-21f3500a="" class="c-row c-row-middle">
+                                            <span class="account-menu-icon"><svg aria-hidden="true"><use href="#account-icon-shield"></use></svg></span>
+                                            <span data-v-21f3500a="" class="name">Security & Safety</span>
+                                        </div>
+                                        <div data-v-21f3500a="" class="c-row c-row-middle"><svg class="account-chevron" aria-hidden="true"><use href="#account-icon-chevron"></use></svg></div>
+                                    </div>
+                                    <div data-v-21f3500a="" class="item c-row c-row-between"
+                                        onclick="location.href='/redenvelopes'">
+                                        <div data-v-21f3500a="" class="c-row c-row-middle">
+                                            <span class="account-menu-icon"><svg aria-hidden="true"><use href="#account-icon-gift"></use></svg></span>
+                                            <span data-v-21f3500a="" class="name">Redeem Code</span>
+                                        </div>
+                                        <div data-v-21f3500a="" class="c-row c-row-middle"><svg class="account-chevron" aria-hidden="true"><use href="#account-icon-chevron"></use></svg></div>
+                                    </div>
+                                    <div data-v-21f3500a="" class="item c-row c-row-between"
+                                        onclick="location.href='/recordsalary'">
+                                        <div data-v-21f3500a="" class="c-row c-row-middle">
+                                            <span class="account-menu-icon"><svg aria-hidden="true"><use href="#account-icon-receipt"></use></svg></span>
+                                            <span data-v-21f3500a="" class="name">Transaction Record</span>
+                                        </div>
+                                        <div data-v-21f3500a="" class="c-row c-row-middle">
+                                            <svg class="account-chevron" aria-hidden="true"><use href="#account-icon-chevron"></use></svg>
+                                        </div>
+                                    </div>
+                                    <div data-v-21f3500a="" class="item c-row c-row-between"
+                                        onclick="location.href='<%=cskh%>'">
+                                        <div data-v-21f3500a="" class="c-row c-row-middle">
+                                            <span class="account-menu-icon"><svg aria-hidden="true"><use href="#account-icon-whatsapp"></use></svg></span>
+                                            <span data-v-21f3500a="" class="name">Whatsapp Support</span>
+                                        </div>
+                                        <div data-v-21f3500a="" class="c-row c-row-middle">
+                                            <svg class="account-chevron" aria-hidden="true"><use href="#account-icon-chevron"></use></svg>
+                                        </div>
+                                    </div>
+                                    <div data-v-21f3500a="" class="item c-row c-row-between"
+                                        onclick="location.href='/keFuMenu'">
+                                        <div data-v-21f3500a="" class="c-row c-row-middle">
+                                            <span class="account-menu-icon"><svg aria-hidden="true"><use href="#account-icon-headset"></use></svg></span>
+                                            <span data-v-21f3500a="" class="name">Customer Support Online 24/7</span>
+                                        </div>
+                                        <div data-v-21f3500a="" class="c-row c-row-middle">
+                                            <svg class="account-chevron" aria-hidden="true"><use href="#account-icon-chevron"></use></svg>
+                                        </div>
+                                    </div>
+                </div>
+            </div>
+
+            <div data-v-8cd483ca="" class="logout-btn m-t-40" style="margin-top: 0rem!important">
+                <div data-v-8cd483ca="" class="gradient">
+                    <button data-v-8cd483ca=""
+                        class="logout van-button van-button--default van-button--normal van-button--block van-button--round"
+                        style="display: -webkit-box;display: -webkit-flex;display: flex;-webkit-box-align: center;-webkit-align-items: center;align-items: center;-webkit-box-pack: center;-webkit-justify-content: center;justify-content: center;gap: 0.13333rem;width: 100%;height: 100%;padding-block: 0.13333rem;color: #d9ac4f;background: none;border: 0.01333rem solid #D9AC4F;border-radius: 0.53333rem;border-radius: 99rem;outline: none;font-size: .4rem;">
+                        <svg class="account-logout-icon" aria-hidden="true"><use href="#account-icon-logout"></use></svg>
+                        <div data-v-8cd483ca="" class="van-button__content">
+                            <span data-v-8cd483ca="" class="van-button__text">
+                                <span data-v-8cd483ca="">Log-Out</span>
+                            </span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <div data-v-7692a079="" data-v-8cd483ca="" class="Loading c-row c-row-middle-center"
+                style="/* display: none; */">
+                <div data-v-7692a079="" class="van-loading van-loading--circular">
+                    <span data-v-7692a079="" class="van-loading__spinner van-loading__spinner--circular"
+                        style="width: auto; height: auto; -webkit-animation-duration: 1s; animation-duration: 1s;">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            viewBox="0 0 200 200" width="200" height="200" preserveAspectRatio="xMidYMid meet"
+                            style="width: 100%;height: 100%;transform: translate3d(0px, 0px, 0px);content-visibility: visible;">
+                            <g transform="matrix(-0.5984085202217102,0.8011911511421204,-0.8011911511421204,-0.5984085202217102,239.9599609375,79.72173309326172)"
+                                style="display: block;">
+                                <image width="200px" height="200px" preserveAspectRatio="xMidYMid slice"
+                                    xlink:href="/index_files/loadingspinner.png"></image>
+                            </g>
+                            <g transform="matrix(0.9408400058746338,0,0,0.9408400058746338,20.969436645507812,79.30152130126953)"
+                                style="display: block;">
+                                <image width="168px" height="44px" preserveAspectRatio="xMidYMid slice"
+                                    xlink:href="/images/drakon-logo.svg"></image>
+                            </g>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="van-overlay" style="z-index: 2001;display: none;"></div>
+    <div role="dialog" class="van-dialog" style="z-index: 2002;display: none;" aria-labelledby="Lời nhắc">
+        <div data-v-b9e16d43="" class="dialog__container-img"><img data-v-b9e16d43="" alt="" class=""
+                data-origin="https://www.bigdaddygame2.com/assets/png/orderCancelWarn-93894f35.png"
+                src="/assets/png/orderCancelWarn-93894f35.png" style="width: 2.13333rem;height: 2.13333rem"></div>
+        <div class="van-dialog__content">
+            <div class="van-dialog__message van-dialog__message--has-title dialog__container-title"
+                style="font-size: .48rem;font-weight: 700;color: #fff">
+                <h1>Do you want to log out?</h1>
+            </div>
+        </div>
+        <div class="van--top van-dialog__footer van-dialog__footer--buttons">
+            <button class="van-button van-button--default van-button--large van-dialog__cancel"
+                style="width: 3.12rem;height: 1.06667rem;color: #d9ac4f;font-size: .42667rem;text-align: center;border-radius: 9rem;border: 0.01333rem solid #D9AC4F;background: transparent">
+                <div class="van-button__content">
+                    <span class="van-button__text">Cancel</span>
+                </div>
+            </button>
+            <button class="van-button van-button--default van-button--large van-dialog__confirm van-hairline--left"
+                style="width: 4.34667rem;height: 1.06667rem;font-size: .42667rem;text-align: center;border-radius: 9rem;border: 0.01333rem solid #D9AC4F;color: #8f5206;font-weight: 700;background: -webkit-linear-gradient(top,#FAE59F 0%,#C4933F 100%);background: linear-gradient(180deg,#FAE59F 0%,#C4933F 100%)">
+                <div class="van-button__content">
+                    <span class="van-button__text">Confirm</span>
+                </div>
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="/js/client.js"></script>
+    <script>
+        function formatAccountBalance(amount) {
+            return `₹ ${Number(amount || 0).toLocaleString('en-IN', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            })}`;
+        }
+
+        function setAccountBalance(amount) {
+            $('#Balance').text(formatAccountBalance(amount));
+            $('#balance_show').text('*****');
+        }
+
+        function refreshAccountBalance() {
+            return fetch('/api/webapi/GetUserInfo')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === false) return false;
+                    setAccountBalance(data.data.money_user);
+                    return true;
+                });
+        }
+
+        setAccountBalance(0);
+
+        fetch('/api/webapi/GetUserInfo')
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === false) {
+                    unsetCookie();
+                    return false;
+                };
+                $('.infoName .name').text(data.data.name_user);
+                $('.infoName .id').text(`UID:${data.data.id_user}`);
+                $('.infoName .id').attr('data-clipboard-text', '');
+                $('.infoName .number').text(`Mobile Number: ${maskPhoneNumber(data.data.phone_user)}`);
+                const registeredEmail = String(data.data.email_user || '').trim();
+                $('.infoName .email')
+                    .text(`Email: ${registeredEmail}`)
+                    .attr('title', registeredEmail)
+                    .toggle(Boolean(registeredEmail));
+                setAccountBalance(data.data.money_user);
+                setTimeout(() => setAccountBalance(data.data.money_user), 0);
+                $('.money .txt').text(` ₹ ${data.data.money_user} `);
+            });
+    </script>
+    <script>
+        $('.reload_money').click(function (e) {
+            e.preventDefault();
+            $(this).addClass('action block-click');
+            refreshAccountBalance();
+            setTimeout(() => {
+                $(this).removeClass('action block-click');
+            }, 3000);
+        });
+
+        window.addEventListener('focus', refreshAccountBalance);
+        document.addEventListener('visibilitychange', function () {
+            if (!document.hidden) refreshAccountBalance();
+        });
+
+        window.onload = function () {
+            $('.Loading').fadeOut(10);
+        }
+        $('.van-dialog__cancel').click(function (e) {
+            e.preventDefault();
+
+            $('.van-dialog').addClass('van-dialog-bounce-leave-active van-dialog-bounce-leave-to');
+            setTimeout(() => {
+                $('.van-dialog').removeClass('van-dialog-bounce-leave-active van-dialog-bounce-leave-to');
+                $('.van-dialog, .van-overlay').fadeOut(50);
+            }, 200);
+        });
+        $('.logout').click(function (e) {
+            e.preventDefault();
+            $('.van-dialog, .van-overlay').css('display', '');
+            $('.van-dialog').addClass('van-dialog-bounce-enter-active van-dialog-bounce-enter-to');
+            setTimeout(() => {
+                $('.van-dialog').removeClass('van-dialog-bounce-enter-active van-dialog-bounce-enter-to');
+            }, 500);
+        });
+        function setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            let expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        function unsetCookie() {
+            setCookie('token', '', 0);
+            setCookie('auth', '', 0);
+            var checkToken = getCookie('token');
+            var checkAuth = getCookie('auth');
+            if (!checkToken && !checkAuth) {
+                location.href = "/login";
+            } else {
+                setCookie('token', '', 0);
+                setCookie('auth', '', 0);
+                location.href = "/login";
+            }
+        }
+
+        $('.van-dialog__confirm').click(function (e) {
+            e.preventDefault();
+            unsetCookie();
+        });
+
+        $(document).on('click', '.toggle-password', function () {
+
+            $(this).toggleClass("fa-eye-slash");
+
+            var input = $("#pass_log_id");
+            input.attr('type') === 'password' ? input.attr('type', 'text') : input.attr('type', 'password')
+        });
+
+        var isBalanceVisible = true;
+
+        function toggleBalanceVisibility() {
+            var actualBalance = document.getElementById("Balance");
+            var hiddenBalance = document.getElementById("balance_show");
+
+            isBalanceVisible = !isBalanceVisible;
+
+            if (isBalanceVisible) {
+                actualBalance.style.display = "inline";
+                hiddenBalance.style.display = "none";
+            } else {
+                actualBalance.style.display = "none";
+                hiddenBalance.style.display = "inline";
+            }
+        }
+
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</body>
+
+</html>
